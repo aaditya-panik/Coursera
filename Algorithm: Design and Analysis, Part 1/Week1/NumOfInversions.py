@@ -1,14 +1,13 @@
 #! /usr/bin/python
-
 import sys
 
-NUMLIST_FILENAME = sys.argv[1]
-inFile = open(NUMLIST_FILENAME, 'r')
-with inFile as f:
-    numList = [int(integers.strip()) for integers in f.readlines()]    
-count = 0
+INPUT_FILENAME = sys.argv[1]
+inputFile = open(INPUT_FILENAME, 'r')
+with inputFile as f:
+    numArray = [int(integers.strip()) for integers in f.readlines()]
+inversioncount = 0
 def inversionsCount(x):
-    global count
+    global inversioncount
     midsection = len(x) / 2
     leftArray = x[:midsection]
     rightArray = x[midsection:]
@@ -29,14 +28,14 @@ def inversionsCount(x):
                     break
             elif a[i] > b[j]:
                 x[k] = b[j]
-                count += (len(a) - i)
+                inversioncount += (len(a) - i)
                 j += 1
                 if j == len(b) and i != len(a):
                     while i != len(a):
                         k+= 1
                         x[k] = a[i]
-                        i += 1                    
-                    break   
+                        i += 1
+                    break
     return x
-inversionsCount(numList)
-print count 
+inversionsCount(numArray)
+print count
